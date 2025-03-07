@@ -1,3 +1,5 @@
+const start = performance.now();
+
 const fs = require('fs');
 const readline = require('readline');
 
@@ -14,12 +16,10 @@ for await (var line of fileInterface) {
     line = line.replace(/["\s,]/g, '');
     const reversedLine = line.split("").reverse().join("");
 
-    if (line === reversedLine) {
-        console.log(`${line} is a palindrome`);
-        palindromeSum += parseInt(line, 2)
-    } else {
-        console.log(`${line} is not a palindrome`);
-    }
+    if (line === reversedLine) palindromeSum += parseInt(line, 2);
 }
 
+const end = performance.now();
+
 console.log(`The sum of all palindromes is ${palindromeSum}`);
+console.log(`Execution took ${end - start} ms`);
